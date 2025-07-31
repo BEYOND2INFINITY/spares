@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohamed Auto Spare Parts</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('moha.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .icons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .icons a {
+      font-size: 40px;
+      color: white;
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .icons a:hover {
+      color: #00ffcc;
+      transform: scale(1.2);
+    }
+
+    .vcard-button {
+      background-color: #00cc99;
+      border: none;
+      padding: 12px 24px;
+      font-size: 18px;
+      border-radius: 6px;
+      color: white;
+      text-decoration: none;
+      transition: background-color 0.3s;
+      cursor: pointer;
+    }
+
+    .vcard-button:hover {
+      background-color: #009977;
+    }
+
+    footer {
+      background-color: #000;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Follow Us & Add Contact</h1>
+    <div class="icons">
+      <a href="https://www.facebook.com/share/15chKnb1Wd/" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://tiktok.com/@mohamed__autospare" target="_blank"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.instagram.com/mohamed__autospareparts?igsh=MW9vczdjMmxhY3cwMw==" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://wa.me/255629391135" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <button class="vcard-button" onclick="addToContacts()">Add to Contacts</button>
+  </div>
+
+  <footer>
+    © 2025 Mohamed Auto Spare Parts. All rights reserved.
+  </footer>
+
+  <script>
+    function addToContacts() {
+      // Check if we're on a mobile device
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      
+      if (isMobile) {
+        // For mobile devices, create a proper vCard link
+        const vCard = `BEGIN:VCARD
+VERSION:3.0
+FN:Mohamed Auto Spare Parts
+TEL:+255629391135
+EMAIL:amudathir141@gmail.com
+ADR:;;Lumumba Street, Opposite na Mchapakazi;Mwanza;Tanzania
+NOTE:Wauzaji na wasambazaji wa vifaa vya magari
+END:VCARD`;
+        
+        const blob = new Blob([vCard], { type: 'text/vcard' });
+        const url = URL.createObjectURL(blob);
+        
+        // Create a temporary anchor element
+        const a = document.createElement('a');
+        a.href = url;
+        a.setAttribute('download', 'mohamed_contact.vcf');
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      } else {
+        // For desktop, show a message or fallback to tel: link
+        window.location.href = "tel:+255629391135";
+      }
+    }
+  </script>
+</body>
+</html>
